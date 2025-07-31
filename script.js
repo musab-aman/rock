@@ -1,79 +1,90 @@
-function getHumanChoice() {
 
-  let userChoice;
-  if (userInput === 'r') {
-    userChoice = "rock";
-  } else if (userInput === 'p') {
-    userChoice = "paper";
-  } else if (userInput === 's') {
-    userChoice = "scissors";
-  } 
+// Get references to the buttons and displays (using class selectors)
+const rockButton = document.querySelector(".rock-btn");
+const paperButton = document.querySelector(".paper-btn");
+const scissorsButton = document.querySelector(".scissors-btn");
 
-  console.log("Your choice: " + userChoice);
-  return userChoice;
-}
-
-function getComputerChoice() {
-  let randomNum = Math.floor(Math.random() * 3);
-  let computerChoice;
-
-  if (randomNum === 0) {
-    computerChoice = "rock";
-  } else if (randomNum === 1) {
-    computerChoice = "paper";
-  } else {
-    computerChoice = "scissors";
-  }
-
-  console.log("Computer choice: " + computerChoice);
-  return computerChoice;
-}
+const playerScoreDisplay = document.getElementById("playerScore");
+const computerScoreDisplay = document.getElementById("computerScore");
+const resultDisplay = document.getElementById("result");
+const choicesDisplay = document.getElementById("choices");
+const winner = document.querySelector(".winner");
 
 let humanScore = 0;
 let computerScore = 0;
 
+function getComputerChoice() {
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
+}
+let gameOver = false;
 function playRound(human, computer) {
-
+  
   if (human === computer) {
-    console.log("It's a tie!");
+    resultDisplay.textContent = "It's a draw!";
   } else if (
     (human === "rock" && computer === "scissors") ||
     (human === "paper" && computer === "rock") ||
     (human === "scissors" && computer === "paper")
   ) {
     humanScore += 1;
-    console.log("You score!");
+    resultDisplay.textContent = "You scored a point!";
   } else {
     computerScore += 1;
-    console.log("Computer scores!");
+    resultDisplay.textContent = "Computer scored a point!";
   }
 
-  console.log(`Score — You: ${humanScore}, Computer: ${computerScore}`);
+  choicesDisplay.textContent = `You chose ${human}, computer chose ${computer}`;
+  playerScoreDisplay.textContent = `Player: ${humanScore}`;
+  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
 
-  if (humanScore === 3) {
-    console.log("You've won the game!");
-  }
-
-  if (computerScore === 3) {
-    console.log("You've lost the game!");
-  }
-}
-
-function playGame() {
-  while (humanScore < 3 && computerScore < 3) {
-    const human = getHumanChoice();
-    const computer = getComputerChoice();
-    playRound(human, computer);
+  if (humanScore === 5) {
+    winner.textContent = `🎉 You have won the game! Click any button to restart.`;
+    gameOver = true;
+  } else if (computerScore === 5) {
+    winner.textContent = `💻 Computer has won the game! Click any button to restart.`;
+    gameOver = true;
   }
 }
 
 
-// Remove playGame(); for UI-based play
 
-const rockButton = document.querySelector(".rock-btn");
-const paperButton = document.querySelector(".paper-btn");
-const scissorsButton = document.querySelector(".scissors-btn");
+// Event listeners
+rockButton.addEventListener("click", () => {
+  if (gameOver) {
+    resetGame(); // If game is over, reset first
+  } else {
+    playRound("rock", getComputerChoice());
+  }
+});
 
-rockButton.addEventListener("click", () => alert("rock"));
-paperButton.addEventListener("click", () => alert("paper"));
-scissorsButton.addEventListener("click", () => alert("scissors"));
+paperButton.addEventListener("click", () => {
+  if (gameOver) {
+    resetGame();
+  } else {
+    playRound("paper", getComputerChoice());
+  }
+});
+
+scissorsButton.addEventListener("click", () => {
+  if (gameOver) {
+    resetGame();
+  } else {
+    playRound("scissors", getComputerChoice());
+  }
+});
+
+
+function resetGame() {
+  humanScore = 0;
+  computerScore = 0;
+  gameOver = false;
+
+  playerScoreDisplay.textContent = "Player: 0";
+  computerScoreDisplay.textContent = "Computer: 0";
+  resultDisplay.textContent = "";
+  choicesDisplay.textContent = "";
+  winner.textContent = "";
+}
+

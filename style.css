@@ -45,7 +45,7 @@ h1 {
     align-items: center;
     margin: 50px 50px;
     font-family: 'Roboto', Arial, sans-serif;
-    padding-left: 200px;
+    
 
     
 
@@ -113,4 +113,23 @@ button {
   background-color: #d35436;
   color: #fff;
   box-shadow: 0 1px 4px rgba(244, 162, 97, 0.10);
+}
+#scoreboard {
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+
+
+}
+#choices,
+#result,
+.winner {
+     display: flex;
+    justify-content: space-evenly;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+    margin: 20px 0 20px;
 }
