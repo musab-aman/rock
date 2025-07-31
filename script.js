@@ -1,6 +1,5 @@
 function getHumanChoice() {
-  let userInput = prompt("Enter r for rock, p for paper, or s for scissors");
-
+ 
   let userChoice;
   if (userInput === 'r') {
     userChoice = "rock";
