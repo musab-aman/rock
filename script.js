@@ -1,5 +1,5 @@
 function getHumanChoice() {
- 
+
   let userChoice;
   if (userInput === 'r') {
     userChoice = "rock";
@@ -67,4 +67,13 @@ function playGame() {
   }
 }
 
-playGame();
+
+// Remove playGame(); for UI-based play
+
+const rockButton = document.querySelector(".rock-btn");
+const paperButton = document.querySelector(".paper-btn");
+const scissorsButton = document.querySelector(".scissors-btn");
+
+rockButton.addEventListener("click", () => alert("rock"));
+paperButton.addEventListener("click", () => alert("paper"));
+scissorsButton.addEventListener("click", () => alert("scissors"));
