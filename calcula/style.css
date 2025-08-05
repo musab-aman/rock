@@ -1,24 +1,120 @@
- .buttons {
-            display: flex;
-            
-           
+body {
+  margin: 0;
+  height: 100vh; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+.allover {
+    background-color: red;
+    height: 500px;
+    width: 500px;
+    padding: 25px;
 
-        }
-        .allover {
+ }   
+.display {
+    height: 25%;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: ;
+ }
+ 
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    
 
-        }
-        .numbers {
-            display: flex;
-            flex-wrap: wrap;
-            width: 80px;
-        }
-        .operators {
-            display: flex;
-            flex-wrap: wrap;
-            width: 15px;
-        }
-        .display {
-         border: solid 1px black;
-         width: 110px;
-         height: 20px;
-        }
+}
+
+.numbers {
+ display: flex;
+ flex-wrap: wrap;
+ width: 270px;
+ margin-top: 10px;
+
+}
+.numbers > button {
+    height: 80px;
+    width: 80px;
+    border: solid 2px black;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 30px;
+}
+
+.numbers > button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+    
+    
+}
+
+.numbers > button:active {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    
+    
+}
+.operators {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90px;
+}
+.operators > button {
+     height: 80px;
+    width: 80px;
+    border: solid 2px black;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 40px;
+
+}
+.operators > button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+    
+    
+}
+
+.operators > button:active {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    
+    
+}
+
+.operations {
+     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90px;
+    flex-direction: column;
+
+}
+
+.operations > button {
+    height: 80px;
+    width: 150px;
+    border: solid 2px black;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 40px;
+    
+}
+.operations > button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.operations > button:active {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
