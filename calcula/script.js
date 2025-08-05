@@ -23,6 +23,9 @@ function operator(num1, operatorSymbol, num2) {
     case '*':
       return multi(num1, num2);
     case '/':
+      if (num2 === 0) {
+        return "error";
+      }
       return divid(num1, num2);
     default:
       return "Invalid operator";
@@ -44,17 +47,32 @@ let num2 = "";
 let actualNum1;
 let actualNum2;
 let theOperator;
+let result;
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        theDisplay.textContent += button.textContent;
-        if (theOperator) {
-            num2 += button.textContent;
-            actualNum2 = parseFloat(num2);
-        } else {
-            num1 += button.textContent;
-            actualNum1 = parseFloat(num1);
-        }
+   if (result && theOperator) {
+      theDisplay.textContent += button.textContent;
+      num2 += button.textContent;
+      actualNum2 = parseFloat(num2);
+       
+    } else if (result) {
+      theDisplay.textContent = button.textContent;
+      num1 = button.textContent;
+      actualNum1 = parseFloat(num1);
+      result = undefined;
+
+    } else if (theOperator) {
+      theDisplay.textContent += button.textContent;
+      num2 += button.textContent;
+      actualNum2 = parseFloat(num2);
+
+    } else {
+      theDisplay.textContent += button.textContent;
+      num1 += button.textContent;
+      actualNum1 = parseFloat(num1);
+}
+
     });
 });
 
@@ -78,7 +96,7 @@ operators.forEach(button => {
 
 equal.addEventListener("click", () => {
     if (actualNum1 !== undefined && actualNum2 !== undefined && theOperator) {
-        const result = operator(actualNum1, theOperator, actualNum2);
+        result = operator(actualNum1, theOperator, actualNum2);
         theDisplay.textContent = result;
         num1 = theDisplay.textContent;
         num2 = "";
