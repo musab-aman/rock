@@ -32,31 +32,61 @@ const theDisplay = document.querySelector(".display");
 
 const buttons = document.querySelectorAll(".numbers button");
 
-const operators = document.querySelector(".operators button");
+const operators = document.querySelectorAll(".operators button");
 
-const equal = document.querySelector(".equal");
+const equal = document.querySelector(".isequal");
 
-
-let num1;
-let num2;
+const clear = document.querySelector(".clear");
 
 
- buttons.forEach(button => {
+let num1 = "";
+let num2 = "";
+let actualNum1;
+let actualNum2;
+let theOperator;
+
+buttons.forEach(button => {
     button.addEventListener("click", () => {
-     
-      theDisplay.textContent += button.textContent;
-      if(theDisplay.textContent.includes('+') || 
-         theDisplay.textContent.includes('-') ||
-         theDisplay.textContent.includes('x') ||
-         theDisplay.textContent.includes('/')) {
-           num2 += button.textContent;
-         }
-          
-      num1 += button.textContent;
+        theDisplay.textContent += button.textContent;
+        if (theOperator) {
+            num2 += button.textContent;
+            actualNum2 = parseFloat(num2);
+        } else {
+            num1 += button.textContent;
+            actualNum1 = parseFloat(num1);
+        }
     });
-  });
+});
 
+operators.forEach(button => {
+    button.addEventListener("click", () => {
+        if (!theDisplay.textContent || theOperator) {
+            return;
+        } else {
+            theDisplay.textContent += button.textContent;
+            theOperator = button.textContent;
+        }
+    });
+});
 
-equal.addEventListener("click", operator())
+equal.addEventListener("click", () => {
+    if (actualNum1 !== undefined && actualNum2 !== undefined && theOperator) {
+        const result = operator(actualNum1, theOperator, actualNum2);
+        theDisplay.textContent = result;
+        num1 = "";
+        num2 = "";
+        actualNum1 = undefined;
+        actualNum2 = undefined;
+        theOperator = undefined;
+    }
+});
+
+clear.addEventListener("click", () => {
+    theDisplay.textContent = "";
+    num1 = "";
+    num2 = "";
+    theOperator = undefined;
+});
+
 
 
