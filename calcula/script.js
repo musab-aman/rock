@@ -60,6 +60,13 @@ buttons.forEach(button => {
 
 operators.forEach(button => {
     button.addEventListener("click", () => {
+      if (num1 && num2) {
+        let result1 = operator(actualNum1, theOperator, actualNum2);
+        actualNum1 = result1;
+        actualNum2 = 0;
+        num2 = "";
+        theDisplay.textContent = button.textContent;
+      }
         if (!theDisplay.textContent || theOperator) {
             return;
         } else {
@@ -73,9 +80,9 @@ equal.addEventListener("click", () => {
     if (actualNum1 !== undefined && actualNum2 !== undefined && theOperator) {
         const result = operator(actualNum1, theOperator, actualNum2);
         theDisplay.textContent = result;
-        num1 = "";
+        num1 = theDisplay.textContent;
         num2 = "";
-        actualNum1 = undefined;
+        actualNum1 = result;
         actualNum2 = undefined;
         theOperator = undefined;
     }
