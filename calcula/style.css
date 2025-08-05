@@ -1,0 +1,24 @@
+ .buttons {
+            display: flex;
+            
+           
+
+        }
+        .allover {
+
+        }
+        .numbers {
+            display: flex;
+            flex-wrap: wrap;
+            width: 80px;
+        }
+        .operators {
+            display: flex;
+            flex-wrap: wrap;
+            width: 15px;
+        }
+        .display {
+         border: solid 1px black;
+         width: 110px;
+         height: 20px;
+        }
